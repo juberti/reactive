@@ -120,16 +120,16 @@ var LoopVisualizer = (function() {
 			var ringId = RINGCOUNT - ii - 1;
 
 			for(var jj = 0; jj < SEGMENTS; jj++) {
-				geoms[ii].vertices[jj].z = (waves[ringId][jj])*2;
+				geoms[ii].vertices[jj].position.z = (waves[ringId][jj])*2;
 			}
 
 			//link up last segment
-			geoms[ii].vertices[SEGMENTS].z = geoms[ii].vertices[0].z;
+			geoms[ii].vertices[SEGMENTS].position.z = geoms[ii].vertices[0].position.z;
 
 			var normLevel = levels[ringId];
 			var hue = colors[ringId];
 
-			materials[ii].color.setHSL(hue, 1, normLevel);
+			materials[ii].color.setHSV(hue, 1, normLevel);
 			materials[ii].linewidth =normLevel*3;
 			materials[ii].opacity = normLevel ;
 			geoms[ii].__dirtyVertices = true;
