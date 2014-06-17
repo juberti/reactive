@@ -100,7 +100,8 @@ function loadAudioBuffer(url) {
 	request.responseType = "arraybuffer";
 
 	request.onload = function() {
-		audioBuffer = audioContext.createBuffer(request.response, false );
+                initAudio(request.response);
+		//audioBuffer = audioContext.createBuffer(request.response, false );
 		finishLoad();
 	};
 
