@@ -81,15 +81,6 @@ function init() {
 
 function loadSampleAudio() {
 	$('#loading').text("loading...");
-
-	source = audioContext.createBufferSource();
-	analyser = audioContext.createAnalyser();
-	analyser.fftSize = 1024;
-
-	// Connect audio processing graph
-	source.connect(analyser);
-	analyser.connect(audioContext.destination);
-
 	loadAudioBuffer("audio/iosong.mp3");
 }
 
@@ -101,18 +92,9 @@ function loadAudioBuffer(url) {
 
 	request.onload = function() {
                 initAudio(request.response);
-		//audioBuffer = audioContext.createBuffer(request.response, false );
-		finishLoad();
 	};
 
 	request.send();
-}
-
-function finishLoad() {
-	source.buffer = audioBuffer;
-	source.looping = true;
-	source.start(0.0);
-	startViz();
 }
 
 function onDocumentMouseMove(event) {
