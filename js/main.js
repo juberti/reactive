@@ -90,7 +90,7 @@ function loadSampleAudio() {
 	source.connect(analyser);
 	analyser.connect(audioContext.destination);
 
-	loadAudioBuffer("audio/beytah.mp3");
+	loadAudioBuffer("audio/iosong.mp3");
 }
 
 function loadAudioBuffer(url) {
@@ -110,7 +110,7 @@ function loadAudioBuffer(url) {
 function finishLoad() {
 	source.buffer = audioBuffer;
 	source.looping = true;
-	source.noteOn(0.0);
+	source.start(0.0);
 	startViz();
 }
 
@@ -199,7 +199,7 @@ function initAudio(data) {
 
 
 function createAudio() {
-	processor = audioContext.createJavaScriptNode(2048 , 1 , 1 );
+	processor = audioContext.createScriptProcessor(2048 , 1 , 1 );
 	//processor.onaudioprocess = processAudio;
 
 	analyser = audioContext.createAnalyser();
@@ -210,7 +210,7 @@ function createAudio() {
 	analyser.connect(processor);
 	processor.connect(audioContext.destination);
 
-	source.noteOn(0);
+	source.start(0);
 
 	startViz();
 }
