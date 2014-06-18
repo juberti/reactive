@@ -100,7 +100,7 @@ function loadAudioBuffer(url) {
 }
 
 function onDocumentTouchStart(event) {
-    container.webkitRequestFullscreen();
+    document.body.webkitRequestFullscreen();
 }
 
 function onDocumentMouseMove(event) {
@@ -109,6 +109,7 @@ function onDocumentMouseMove(event) {
 }
 
 function onDocumentTouchMove(event) {
+  event.preventDefault();
   if (event.touches.length == 1) {
     var touch = event.touches[0];
     mouseX = (touch.clientX - windowHalfX) * 2;
