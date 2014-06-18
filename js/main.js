@@ -70,7 +70,7 @@ function init() {
 	//init listeners
 	$("#loadSample").click( loadSampleAudio);
 	$(document).mousemove(onDocumentMouseMove);
-        $(document).touchmove(onDocumentTouchMove);
+        $(document).bind('touchmove', onDocumentTouchMove);
 	$(window).resize(onWindowResize);
 	document.addEventListener('drop', onDocumentDrop, false);
 	document.addEventListener('dragover', onDocumentDragOver, false);
