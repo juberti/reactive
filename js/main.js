@@ -70,8 +70,9 @@ function init() {
 	//init listeners
 	$("#loadSample").click( loadSampleAudio);
 	$(document).mousemove(onDocumentMouseMove);
-        $(document).bind('touchmove', onDocumentTouchMove);
-	$(window).resize(onWindowResize);
+        document.addEventListener('touchmove', onDocumentTouchMove, false);
+	document.addEventListener('touchstart', onDocumentTouchStart, false);
+        $(window).resize(onWindowResize);
 	document.addEventListener('drop', onDocumentDrop, false);
 	document.addEventListener('dragover', onDocumentDragOver, false);
 
@@ -96,6 +97,10 @@ function loadAudioBuffer(url) {
 	};
 
 	request.send();
+}
+
+function onDocumentTouchStart(event) {
+    container.webkitRequestFullscreen();
 }
 
 function onDocumentMouseMove(event) {
