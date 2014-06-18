@@ -70,6 +70,7 @@ function init() {
 	//init listeners
 	$("#loadSample").click( loadSampleAudio);
 	$(document).mousemove(onDocumentMouseMove);
+        $(document).touchmove(onDocumentTouchMove);
 	$(window).resize(onWindowResize);
 	document.addEventListener('drop', onDocumentDrop, false);
 	document.addEventListener('dragover', onDocumentDragOver, false);
@@ -100,6 +101,14 @@ function loadAudioBuffer(url) {
 function onDocumentMouseMove(event) {
 	mouseX = (event.clientX - windowHalfX)*2;
 	mouseY = (event.clientY - windowHalfY)*2;
+}
+
+function onDocumentTouchMove(event) {
+  if (event.touches.length == 1) {
+    var touch = event.touches[0];
+    mouseX = (touch.clientX - windowHalfX) * 2;
+    mouseY = (touch.clientY - windowHalfY) * 2; 
+  }
 }
 
 function onWindowResize(event) {
