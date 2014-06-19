@@ -62,15 +62,17 @@ function init() {
 	};
 
 	//add stats
-	stats = new Stats();
-	stats.domElement.style.position = 'absolute';
-	stats.domElement.style.top = '0px';
-	container.appendChild(stats.domElement);
+	//stats = new Stats();
+	//stats.domElement.style.position = 'absolute';
+	//stats.domElement.style.top = '0px';
+	//container.appendChild(stats.domElement);
 
 	//init listeners
 	$("#loadSample").click( loadSampleAudio);
 	$(document).mousemove(onDocumentMouseMove);
-	$(window).resize(onWindowResize);
+        document.addEventListener('touchmove', onDocumentTouchMove, false);
+	document.addEventListener('touchstart', onDocumentTouchStart, false);
+        $(window).resize(onWindowResize);
 	document.addEventListener('drop', onDocumentDrop, false);
 	document.addEventListener('dragover', onDocumentDragOver, false);
 
@@ -81,16 +83,7 @@ function init() {
 
 function loadSampleAudio() {
 	$('#loading').text("loading...");
-
-	source = audioContext.createBufferSource();
-	analyser = audioContext.createAnalyser();
-	analyser.fftSize = 1024;
-
-	// Connect audio processing graph
-	source.connect(analyser);
-	analyser.connect(audioContext.destination);
-
-	loadAudioBuffer("audio/beytah.mp3");
+	loadAudioBuffer("audio/iosong.mp3");
 }
 
 function loadAudioBuffer(url) {
@@ -100,23 +93,28 @@ function loadAudioBuffer(url) {
 	request.responseType = "arraybuffer";
 
 	request.onload = function() {
-		audioBuffer = audioContext.createBuffer(request.response, false );
-		finishLoad();
+                initAudio(request.response);
 	};
 
 	request.send();
 }
 
-function finishLoad() {
-	source.buffer = audioBuffer;
-	source.looping = true;
-	source.noteOn(0.0);
-	startViz();
+function onDocumentTouchStart(event) {
+    document.body.webkitRequestFullscreen();
 }
 
 function onDocumentMouseMove(event) {
 	mouseX = (event.clientX - windowHalfX)*2;
 	mouseY = (event.clientY - windowHalfY)*2;
+}
+
+function onDocumentTouchMove(event) {
+  event.preventDefault();
+  if (event.touches.length == 1) {
+    var touch = event.touches[0];
+    mouseX = (touch.clientX - windowHalfX) * 2;
+    mouseY = (touch.clientY - windowHalfY) * 2; 
+  }
 }
 
 function onWindowResize(event) {
@@ -130,7 +128,7 @@ function onWindowResize(event) {
 function animate() {
 	requestAnimationFrame(animate);
 	render();
-	stats.update();
+	//stats.update();
 }
 
 function render() {
@@ -199,7 +197,7 @@ function initAudio(data) {
 
 
 function createAudio() {
-	processor = audioContext.createJavaScriptNode(2048 , 1 , 1 );
+	processor = audioContext.createScriptProcessor(2048 , 1 , 1 );
 	//processor.onaudioprocess = processAudio;
 
 	analyser = audioContext.createAnalyser();
@@ -210,7 +208,7 @@ function createAudio() {
 	analyser.connect(processor);
 	processor.connect(audioContext.destination);
 
-	source.noteOn(0);
+	source.start(0);
 
 	startViz();
 }
