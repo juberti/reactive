@@ -130,7 +130,7 @@ var LoopVisualizer = (function() {
 			var hue = colors[ringId];
 
 			materials[ii].color.setHSV(hue, 1, normLevel);
-			materials[ii].linewidth =normLevel*3;
+			materials[ii].linewidth =normLevel*30;
 			materials[ii].opacity = normLevel ;
 			geoms[ii].__dirtyVertices = true;
 			geoms[ii].__dirtyColors = true;
