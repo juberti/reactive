@@ -4,7 +4,7 @@ var LoopVisualizer = (function() {
 	var SEPARATION = 30;
 	var INIT_RADIUS = 50;
 	var SEGMENTS = 256;
-	var VOL_SENS = 10;
+	var VOL_SENS = 5;
 
 	var rings = [];
 	var geoms = [];
@@ -50,7 +50,7 @@ var LoopVisualizer = (function() {
 		for(var i = 0; i < RINGCOUNT; i++) {
 
 			var m = new THREE.LineBasicMaterial( { color: 0xffffff,
-				linewidth: 50 ,
+				linewidth: 10 ,
 				opacity : 0.7,
 				blending : THREE.AdditiveBlending,
 				depthTest : false,
@@ -120,7 +120,7 @@ var LoopVisualizer = (function() {
 			var ringId = RINGCOUNT - ii - 1;
 
 			for(var jj = 0; jj < SEGMENTS; jj++) {
-				geoms[ii].vertices[jj].position.z = (waves[ringId][jj])*2;
+				geoms[ii].vertices[jj].position.z = (waves[ringId][jj])*20;
 			}
 
 			//link up last segment
