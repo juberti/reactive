@@ -4,7 +4,7 @@ var LoopVisualizer = (function() {
 	var SEPARATION = 30;
 	var INIT_RADIUS = 50;
 	var SEGMENTS = 256;
-	var VOL_SENS = 50;
+	var VOL_SENS = 10;
 
 	var rings = [];
 	var geoms = [];
