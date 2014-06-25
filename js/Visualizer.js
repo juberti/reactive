@@ -120,7 +120,7 @@ var LoopVisualizer = (function() {
 			var ringId = RINGCOUNT - ii - 1;
 
 			for(var jj = 0; jj < SEGMENTS; jj++) {
-				geoms[ii].vertices[jj].position.z = (waves[ringId][jj])*5;
+				geoms[ii].vertices[jj].position.z = (waves[ringId][jj])*2;
 			}
 
 			//link up last segment
