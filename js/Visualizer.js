@@ -4,7 +4,7 @@ var LoopVisualizer = (function() {
 	var SEPARATION = 30;
 	var INIT_RADIUS = 50;
 	var SEGMENTS = 256;
-	var VOL_SENS = 5;
+	var VOL_SENS = 50;
 
 	var rings = [];
 	var geoms = [];
@@ -50,7 +50,7 @@ var LoopVisualizer = (function() {
 		for(var i = 0; i < RINGCOUNT; i++) {
 
 			var m = new THREE.LineBasicMaterial( { color: 0xffffff,
-				linewidth: 5 ,
+				linewidth: 50 ,
 				opacity : 0.7,
 				blending : THREE.AdditiveBlending,
 				depthTest : false,
