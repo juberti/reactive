@@ -50,7 +50,7 @@ var LoopVisualizer = (function() {
 		for(var i = 0; i < RINGCOUNT; i++) {
 
 			var m = new THREE.LineBasicMaterial( { color: 0xffffff,
-				linewidth: 1 ,
+				linewidth: 5 ,
 				opacity : 0.7,
 				blending : THREE.AdditiveBlending,
 				depthTest : false,
@@ -130,7 +130,7 @@ var LoopVisualizer = (function() {
 			var hue = colors[ringId];
 
 			materials[ii].color.setHSV(hue, 1, normLevel);
-			materials[ii].linewidth =normLevel*3;
+			materials[ii].linewidth =normLevel*30;
 			materials[ii].opacity = normLevel ;
 			geoms[ii].__dirtyVertices = true;
 			geoms[ii].__dirtyColors = true;
